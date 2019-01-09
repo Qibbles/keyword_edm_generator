@@ -2,16 +2,6 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
-#Images
-babyHeader = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_baby.png?2"
-beautyHeader = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_beauty.png"
-digitalHeader = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_digital.png"
-fashionHeader = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_fashion.png"
-foodHeader = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_food.png"
-livingHeader = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_living.png"
-sportsHeader = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_sports.png"
-buttonBg = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_keyword_bg.png"
-
 #functions
 class input:
 
@@ -30,35 +20,28 @@ class input:
     def generate():
         templateCategory = categoryVar.get()
         if templateCategory == "Baby":
-            headerImg = babyHeader
             filename = "baby_keyword_insert.html"
         elif templateCategory == "Beauty":
-            headerImg = beautyHeader
             filename = "beauty_keyword_insert.html"
         elif templateCategory == "Digital":
-            headerImg = digitalHeader
             filename = "digital_keyword_insert.html"
         elif templateCategory == "Fashion":
-            headerImg = fashionHeader
             filename = "fashion_keyword_insert.html"
         elif templateCategory == "Food":
-            headerImg = foodHeader
             filename = "food_keyword_insert.html"
         elif templateCategory == "Living":
-            headerImg = livingHeader
             filename = "living_keyword_insert.html"
         elif templateCategory == "Sports":
-            headerImg = sportsHeader
             filename = "sports_keyword_insert.html"
         
         try:
             fileExist = open(filename, "r")
             if messagebox.askokcancel("Error - Existing file for " + templateCategory + " detected!", "Do you wish to overwrite existing file?"):
-                createInsert(templateCategory, filename, headerImg)
+                createInsert(templateCategory, filename)
             else:
                 pass
         except:
-            createInsert(templateCategory, filename, headerImg)
+            createInsert(templateCategory, filename)
 
     def clear(self):
         self.iconBox.delete(0, 'end')
@@ -106,7 +89,7 @@ def delete():
     ten.keywordBox.delete(0, 'end')
     ten.linkBox.delete(0, 'end')
 
-def createInsert(templateCategory, filename, headerImg):
+def createInsert(templateCategory, filename):
 
     keywordArray = []
 
@@ -125,49 +108,43 @@ def createInsert(templateCategory, filename, headerImg):
     html.write('<table width="750" style="table-layout: fixed; padding-left: 0px; padding-top: 10px; padding-right: 0px; padding-bottom: 10px;" border="0" cellspacing="0" cellpadding="0" align="center">')
     html.write('    <tbody>')
     html.write('        <tr>')
-    html.write('            <td width="750" colspan="3"><img src="' + headerImg + '" width="100%" border="0"></td>')
-    html.write('        </tr>')
-    html.write('        <tr>')
-    html.write('            <td width="750" height="20" colspan="3"></td>')
+    html.write("            <th style='font-family: Helvetica, sans-serif; font-size: 30px; color: #333; text-decoration: none;'>What's trending<br /><hr></th>")
     html.write('        </tr>')
     for i in range(2):
         html.write('        <tr>')
         html.write('            <td>')
-        html.write('                <table border="0" width="750">')
+        html.write('                <table border="0">')
         html.write('                    <tr>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><img src="' + keywordArray[(i*5)][0] + '" width="48" height="48"></th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)][2] + '"><img src="' + keywordArray[(i*5)][0] + '" style="max-width:64px;" /></a></th>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><img src="' + keywordArray[(i*5)+1][0] + '" width="48" height="48"></th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)+1][2] + '"><img src="' + keywordArray[(i*5)+1][0] + '" style="max-width:64px;" /></a></th>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><img src="' + keywordArray[(i*5)+2][0] + '" width="48" height="48"></th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)+2][2] + '"><img src="' + keywordArray[(i*5)+2][0] + '" style="max-width:64px;" /></a></th>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><img src="' + keywordArray[(i*5)+3][0] + '" width="48" height="48"></th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)+3][2] + '"><img src="' + keywordArray[(i*5)+3][0] + '" style="max-width:64px;" /></a></th>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><img src="' + keywordArray[(i*5)+4][0] + '" width="48" height="48"></th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)+4][2] + '"><img src="' + keywordArray[(i*5)+4][0] + '" style="max-width:64px;" /></a></th>')
         html.write('                        <th width="1%"></th>')
         html.write('                    </tr>')
         html.write('                    <tr>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%">' + keywordArray[(i*5)][1] + '</th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size: 30px; color: #333; text-decoration: none;">' + keywordArray[(i*5)][1] + '</a></th>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%">' + keywordArray[(i*5)+1][1] + '</th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size: 30px; color: #333; text-decoration: none;">' + keywordArray[(i*5)+1][1] + '</a></th>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%">' + keywordArray[(i*5)+2][1] + '</th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size: 30px; color: #333; text-decoration: none;">' + keywordArray[(i*5)+2][1] + '</a></th>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%">' + keywordArray[(i*5)+3][1] + '</th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size: 30px; color: #333; text-decoration: none;">' + keywordArray[(i*5)+3][1] + '</a></th>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%">' + keywordArray[(i*5)+4][1] + '</th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size: 30px; color: #333; text-decoration: none;">' + keywordArray[(i*5)+4][1] + '</a></th>')
         html.write('                        <th width="1%"></th>')
-        html.write('                    </tr>')
-        html.write('                    <tr>')
-        html.write('                        <td height="20"></td>')
         html.write('                    </tr>')
         html.write('                </table>')
         html.write('            </td>')
         html.write('        </tr>')
     html.write('        <tr>')
-    html.write('            <td width="750" height="20" colspan="3"></td>')
+    html.write('            <th><hr></th>')
     html.write('        </tr>')
     html.write('    </tbody>')
     html.write('</table>')

@@ -2,6 +2,15 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
+#images
+babyImg = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_baby.png"
+beautyImg = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_beauty.png"
+digitalImg = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_digital.png"
+fashionImg = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_fashion.png"
+foodImg = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_food.png"
+livingImg = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_living.png"
+sportsImg = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_sports.png"
+
 #functions
 class input:
 
@@ -20,33 +29,40 @@ class input:
     def generate():
         templateCategory = categoryVar.get()
         if templateCategory == "Baby":
+            banner = babyImg
             filename = "baby_keyword_insert.html"
         elif templateCategory == "Beauty":
+            banner = beautyImg
             filename = "beauty_keyword_insert.html"
         elif templateCategory == "Digital":
+            banner = digitalImg
             filename = "digital_keyword_insert.html"
         elif templateCategory == "Fashion":
+            banner = fashionImg
             filename = "fashion_keyword_insert.html"
         elif templateCategory == "Food":
+            banner = foodImg
             filename = "food_keyword_insert.html"
         elif templateCategory == "Living":
+            banner = livingImg
             filename = "living_keyword_insert.html"
         elif templateCategory == "Sports":
+            banner = sportsImg
             filename = "sports_keyword_insert.html"
         
         try:
             fileExist = open(filename, "r")
             if messagebox.askokcancel("Error - Existing file for " + templateCategory + " detected!", "Do you wish to overwrite existing file?"):
-                createInsert(templateCategory, filename)
+                createInsert(templateCategory, banner, filename)
             else:
                 pass
         except:
-            createInsert(templateCategory, filename)
+            createInsert(templateCategory, banner, filename)
 
-    def clear(self):
-        self.iconBox.delete(0, 'end')
-        self.keywordBox.delete(0, 'end')
-        self.linkBox.delete(0, 'end')
+    # def clear(self):
+    #     self.iconBox.delete(0, 'end')
+    #     self.keywordBox.delete(0, 'end')
+    #     self.linkBox.delete(0, 'end')
 
 def delete():
     one.iconBox.delete(0, 'end')
@@ -89,7 +105,7 @@ def delete():
     ten.keywordBox.delete(0, 'end')
     ten.linkBox.delete(0, 'end')
 
-def createInsert(templateCategory, filename):
+def createInsert(templateCategory, banner, filename):
 
     keywordArray = []
 
@@ -108,7 +124,7 @@ def createInsert(templateCategory, filename):
     html.write('<table width="750" style="table-layout: fixed; padding-left: 0px; padding-top: 10px; padding-right: 0px; padding-bottom: 10px;" border="0" cellspacing="0" cellpadding="0" align="center">')
     html.write('    <tbody>')
     html.write('        <tr>')
-    html.write("            <th style='font-family: Helvetica, sans-serif; font-size: 30px; color: #333; text-decoration: none;'>What's trending<br /><hr></th>")
+    html.write('            <td width="750" colspan="3"><img src=' + banner + ' width="100%" border="0"></td>')
     html.write('        </tr>')
     for i in range(2):
         html.write('        <tr>')
@@ -143,9 +159,6 @@ def createInsert(templateCategory, filename):
         html.write('                </table>')
         html.write('            </td>')
         html.write('        </tr>')
-    html.write('        <tr>')
-    html.write('            <th><hr></th>')
-    html.write('        </tr>')
     html.write('    </tbody>')
     html.write('</table>')
     html.close()

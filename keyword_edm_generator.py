@@ -49,7 +49,6 @@ class input:
         elif templateCategory == "Sports":
             banner = sportsImg
             filename = "sports_keyword_insert.html"
-        
         try:
             fileExist = open(filename, "r")
             if messagebox.askokcancel("Error - Existing file for " + templateCategory + " detected!", "Do you wish to overwrite existing file?"):
@@ -58,11 +57,6 @@ class input:
                 pass
         except:
             createInsert(templateCategory, banner, filename)
-
-    # def clear(self):
-    #     self.iconBox.delete(0, 'end')
-    #     self.keywordBox.delete(0, 'end')
-    #     self.linkBox.delete(0, 'end')
 
 def delete():
     one.iconBox.delete(0, 'end')
@@ -108,6 +102,8 @@ def delete():
 def createInsert(templateCategory, banner, filename):
 
     keywordArray = []
+    fontSize = fontOption.get()
+    print(fontSize)
 
     keywordArray.append([one.icon.get(), one.keyword.get(), one.link.get()])
     keywordArray.append([two.icon.get(), two.keyword.get(), two.link.get()])
@@ -124,41 +120,41 @@ def createInsert(templateCategory, banner, filename):
     html.write('<table width="750" style="table-layout: fixed; padding-left: 0px; padding-top: 10px; padding-right: 0px; padding-bottom: 10px;" border="0" cellspacing="0" cellpadding="0" align="center">')
     html.write('    <tbody>')
     html.write('        <tr>')
-    html.write('            <td width="750" colspan="3"><img src=' + banner + ' width="100%" border="0"></td>')
+    html.write('            <td colspan="3"><img src=' + banner + ' width="100%" border="0"></td>')
     html.write('        </tr>')
+    html.write('        <tr>')
+    html.write('            <table width="750" border="0" align="center">')
+    html.write('                <td>')
     for i in range(2):
-        html.write('        <tr>')
-        html.write('            <td>')
-        html.write('                <table border="0">')
         html.write('                    <tr>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)][2] + '"><img src="' + keywordArray[(i*5)][0] + '" style="max-width:64px;" /></a></th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)][2] + '"><img src="' + keywordArray[(i*5)][0] + '" width="48px" height="48px";" /></a></th>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)+1][2] + '"><img src="' + keywordArray[(i*5)+1][0] + '" style="max-width:64px;" /></a></th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)+1][2] + '"><img src="' + keywordArray[(i*5)+1][0] + '" width="48px" height="48px";" /></a></th>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)+2][2] + '"><img src="' + keywordArray[(i*5)+2][0] + '" style="max-width:64px;" /></a></th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)+2][2] + '"><img src="' + keywordArray[(i*5)+2][0] + '" width="48px" height="48px";" /></a></th>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)+3][2] + '"><img src="' + keywordArray[(i*5)+3][0] + '" style="max-width:64px;" /></a></th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)+3][2] + '"><img src="' + keywordArray[(i*5)+3][0] + '" width="48px" height="48px";" /></a></th>')
         html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)+4][2] + '"><img src="' + keywordArray[(i*5)+4][0] + '" style="max-width:64px;" /></a></th>')
+        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)+4][2] + '"><img src="' + keywordArray[(i*5)+4][0] + '" width="48px" height="48px";" /></a></th>')
         html.write('                        <th width="1%"></th>')
         html.write('                    </tr>')
         html.write('                    <tr>')
-        html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size: 30px; color: #333; text-decoration: none;">' + keywordArray[(i*5)][1] + '</a></th>')
-        html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size: 30px; color: #333; text-decoration: none;">' + keywordArray[(i*5)+1][1] + '</a></th>')
-        html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size: 30px; color: #333; text-decoration: none;">' + keywordArray[(i*5)+2][1] + '</a></th>')
-        html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size: 30px; color: #333; text-decoration: none;">' + keywordArray[(i*5)+3][1] + '</a></th>')
-        html.write('                        <th width="1%"></th>')
-        html.write('                        <th width="20%"><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size: 30px; color: #333; text-decoration: none;">' + keywordArray[(i*5)+4][1] + '</a></th>')
-        html.write('                        <th width="1%"></th>')
+        html.write('                        <th></th>')
+        html.write('                        <th><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)][1] + '</a></th>')
+        html.write('                        <th></th>')
+        html.write('                        <th><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + 'px; color: #333; text-decoration: none;">' + keywordArray[(i*5)+1][1] + '</a></th>')
+        html.write('                        <th></th>')
+        html.write('                        <th><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + 'px; color: #333; text-decoration: none;">' + keywordArray[(i*5)+2][1] + '</a></th>')
+        html.write('                        <th></th>')
+        html.write('                        <th><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + 'px; color: #333; text-decoration: none;">' + keywordArray[(i*5)+3][1] + '</a></th>')
+        html.write('                        <th></th>')
+        html.write('                        <th><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + 'px; color: #333; text-decoration: none;">' + keywordArray[(i*5)+4][1] + '</a></th>')
+        html.write('                        <th></th>')
         html.write('                    </tr>')
-        html.write('                </table>')
-        html.write('            </td>')
-        html.write('        </tr>')
+    html.write('                </td>')
+    html.write('            </table>')
+    html.write('        </tr>')
     html.write('    </tbody>')
     html.write('</table>')
     html.close()
@@ -173,27 +169,34 @@ win.resizable(False, False)
 
 #Header labels
 templateLabel = ttk.Label(win, text="Template Category")
+templateLabel.grid(column=1, row=1)
+
+templateLabel = ttk.Label(win, text="Font Size")
 templateLabel.grid(column=1, row=0)
 
 iconLabel = ttk.Label(win, text="Icon URL")
-iconLabel.grid(column=1, row=1)
+iconLabel.grid(column=1, row=2)
 
 KeywordLabel = ttk.Label(win, text="Keyword")
-KeywordLabel.grid(column=2, row=1)
+KeywordLabel.grid(column=2, row=3)
 
 linkLabel = ttk.Label(win, text="Link URL")
-linkLabel.grid(column=3, row=1)
+linkLabel.grid(column=3, row=4)
 
 #OptionMenu
 categoryVar = tk.StringVar()
 categoryVar.set("Baby") #default value
 
 category = tk.OptionMenu(win, categoryVar, "Baby", "Beauty", "Digital", "Fashion", "Food", "Living", "Sports")
-category.grid(column=2, row=0)
+category.grid(column=2, row=1)
 
 #Input
+fontOption = tk.StringVar()
+fontBox = ttk.Entry(win, width=20, textvariable=fontOption)
+fontBox.grid(column=2, row=0)
+
 for i in range(10):
-    r = 2 + i
+    r = 3 + i
 
     indexLabel = ttk.Label(win, text=str(i + 1) + ". ")
     indexLabel.grid(column=0, row=r)
@@ -219,8 +222,8 @@ for i in range(10):
     if i == 9:
         ten  = input("ten", r)
         clearButton = ttk.Button(win, text="Reset", command=delete)
-        clearButton.grid(column=1, row=i+3)
+        clearButton.grid(column=1, row=i+4)
         generateButton = ttk.Button(win, text="Generate HTML", command=input.generate)
-        generateButton.grid(column=3, row=i+3)
+        generateButton.grid(column=3, row=i+4)
 
 win.mainloop()

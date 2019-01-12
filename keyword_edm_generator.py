@@ -214,10 +214,6 @@ heightBox = ttk.Entry(win, width=20, textvariable=heightOption)
 heightBox.insert(0, "58")
 heightBox.grid(column=2, row=2)
 
-fontOption = tk.StringVar()
-fontBox = ttk.Entry(win, width=20, textvariable=fontOption)
-fontBox.grid(column=2, row=0)
-
 for i in range(10):
     r = 5 + i
 

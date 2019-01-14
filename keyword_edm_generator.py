@@ -245,4 +245,6 @@ for i in range(10):
         generateButton = ttk.Button(win, text="Generate HTML", command=input.generate)
         generateButton.grid(column=3, row=i+6)
 
+one.iconBox.focus()
+
 win.mainloop()

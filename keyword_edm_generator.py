@@ -24,8 +24,8 @@ class input:
         self.keywordBox.grid(column=2, row=self.r)
         self.link = tk.StringVar()
         self.linkBox = ttk.Entry(win, width=20, textvariable=self.link)
-        self.linkBox.grid(column=3, row=self.r)
-
+        self.linkBox.grid(column=3, row=self.r, padx=(0, 5))
+        
     def generate():
         templateCategory = categoryVar.get()
         if templateCategory == "Baby":
@@ -57,6 +57,12 @@ class input:
                 pass
         except:
             createInsert(templateCategory, banner, filename)
+        aspect()
+
+def aspect():
+        aspect = round(max(int(heightOption.get()), int(widthOption.get()))/min(int(heightOption.get()), int(widthOption.get())),5)
+        aspectBox.delete(0, 'end')
+        aspectBox.insert(0, aspect)
 
 def delete():
     one.iconBox.delete(0, 'end')
@@ -102,7 +108,6 @@ def delete():
     one.iconBox.focus()
 
 def createInsert(templateCategory, banner, filename):
-
     keywordArray = []
     fontSize = fontOption.get()
     widthSize = widthOption.get()
@@ -126,7 +131,7 @@ def createInsert(templateCategory, banner, filename):
     html.write('            <td colspan="11"><img src=' + banner + ' width="100%" border="0"></td>\n')
     html.write('        </tr>\n')
     html.write('        <tr>\n')
-    html.write('            <table width="750" align="center">\n')
+    html.write('            <table style="table-layout: fixed; width=100%" align="center">\n')
     for i in range(2):
         html.write('                    <tr>\n')
         html.write('                        <th width="1%"></th>\n')
@@ -143,15 +148,15 @@ def createInsert(templateCategory, banner, filename):
         html.write('                    </tr>\n')
         html.write('                    <tr>\n')
         html.write('                        <th></th>\n')
-        html.write('                        <th><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)][1] + '</a></th>\n')
+        html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)][1] + '</a></th>\n')
         html.write('                        <th></th>\n')
-        html.write('                        <th><a href="' + keywordArray[(i*5)+1][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+1][1] + '</a></th>\n')
+        html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)+1][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+1][1] + '</a></th>\n')
         html.write('                        <th></th>\n')
-        html.write('                        <th><a href="' + keywordArray[(i*5)+2][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+2][1] + '</a></th>\n')
+        html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)+2][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+2][1] + '</a></th>\n')
         html.write('                        <th></th>\n')
-        html.write('                        <th><a href="' + keywordArray[(i*5)+3][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+3][1] + '</a></th>\n')
+        html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)+3][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+3][1] + '</a></th>\n')
         html.write('                        <th></th>\n')
-        html.write('                        <th><a href="' + keywordArray[(i*5)+4][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+4][1] + '</a></th>\n')
+        html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)+4][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+4][1] + '</a></th>\n')
         html.write('                        <th></th>\n')
         html.write('                    </tr>\n')
         html.write('                    <tr>\n')
@@ -165,6 +170,18 @@ def createInsert(templateCategory, banner, filename):
 
     messagebox.showinfo("Success!", "EDM insert for " + templateCategory + " created!")
 
+def width():
+    height = heightOption.get()
+    widthBox.delete(0, 'end')
+    width = int(round(float(aspectOption.get()) * float(height),0))
+    widthBox.insert(0, width)
+
+def height():
+    width = widthOption.get()
+    heightBox.delete(0, 'end')
+    height = int(round(float(aspectOption.get()) * float(width),0))
+    heightBox.insert(0, height)
+
 #GUI
 win = tk.Tk()
 win.title("Keyword EDM Generator by Gregory")
@@ -173,51 +190,60 @@ win.resizable(False, False)
 
 #Header labels
 fontLabel = ttk.Label(win, text="Font Size")
-fontLabel.grid(column=1, row=0)
+fontLabel.grid(column=1, row=1)
 
 widthLabel = ttk.Label(win, text="Image Width (pixels)")
-widthLabel.grid(column=1, row=1)
+widthLabel.grid(column=1, row=2)
+
+aspectLabel = ttk.Label(win, text="Aspect Ratio").grid(row=0, column=3)
 
 heightLabel = ttk.Label(win, text="Image Height (pixels)")
-heightLabel.grid(column=1, row=2)
+heightLabel.grid(column=1, row=3)
 
 templateLabel = ttk.Label(win, text="Template Category")
-templateLabel.grid(column=1, row=3)
+templateLabel.grid(column=1, row=5)
 
 iconLabel = ttk.Label(win, text="Icon URL")
-iconLabel.grid(column=1, row=4)
+iconLabel.grid(column=1, row=5)
 
 KeywordLabel = ttk.Label(win, text="Keyword")
-KeywordLabel.grid(column=2, row=4)
+KeywordLabel.grid(column=2, row=5)
 
 linkLabel = ttk.Label(win, text="Link URL")
-linkLabel.grid(column=3, row=4)
+linkLabel.grid(column=3, row=5)
 
 #OptionMenu
 categoryVar = tk.StringVar()
 categoryVar.set("Baby") #default value
 
 category = tk.OptionMenu(win, categoryVar, "Baby", "Beauty", "Digital", "Fashion", "Food", "Living", "Sports")
-category.grid(column=2, row=3)
+category.grid(column=2, row=4)
 
 #Input
 fontOption = tk.StringVar()
 fontBox = ttk.Entry(win, width=20, textvariable=fontOption)
 fontBox.insert(0, "30")
-fontBox.grid(column=2, row=0)
+fontBox.grid(column=2, row=1)
 
 widthOption = tk.StringVar()
 widthBox = ttk.Entry(win, width=20, textvariable=widthOption)
-widthBox.insert(0, "58")
-widthBox.grid(column=2, row=1)
+widthBox.insert(0, "76")
+widthBox.grid(column=2, row=2)
 
 heightOption = tk.StringVar()
 heightBox = ttk.Entry(win, width=20, textvariable=heightOption)
-heightBox.insert(0, "58")
-heightBox.grid(column=2, row=2)
+heightBox.insert(0, "100")
+heightBox.grid(column=2, row=3)
+
+aspectOption = tk.StringVar()
+aspectBox = ttk.Entry(win, width=8, textvariable=aspectOption)
+aspectBox.grid(column=3, row=1)
+# aspectFrame = tk.Frame(win).grid(row=2, column=3, padx=20)
+aspectWidthButton = ttk.Button(win, text="Width", command=width).grid(row=2, column=3)
+aspectHeightButton = ttk.Button(win, text="Height", command=height).grid(row=3, column=3)
 
 for i in range(10):
-    r = 5 + i
+    r = 6 + i
 
     indexLabel = ttk.Label(win, text=str(i + 1) + ". ")
     indexLabel.grid(column=0, row=r)
@@ -243,9 +269,11 @@ for i in range(10):
     if i == 9:
         ten  = input("ten", r)
         clearButton = ttk.Button(win, text="Reset", command=delete)
-        clearButton.grid(column=1, row=i+6)
+        clearButton.grid(column=1, row=i+7, pady=5)
         generateButton = ttk.Button(win, text="Generate HTML", command=input.generate)
-        generateButton.grid(column=3, row=i+6)
+        generateButton.grid(column=3, row=i+7, pady=5)
+
+aspect()
 
 one.iconBox.focus()
 

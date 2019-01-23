@@ -107,6 +107,10 @@ def update(*args):
     elif templateCategory == "Others":
         bannerImgBox.delete(0, 'end')
         bannerWidthBox.delete(0, 'end')
+        banner = ""
+        size = ""
+        align = "center"
+        filename = "keyword_edm_insert.html"
     return(templateCategory, banner, size, align, filename)
 
 def aspect():
@@ -179,37 +183,30 @@ def createInsert(templateCategory, banner, size, align, filename):
     html = open(filename, "w")
     html.write('<table width="' + str(size) + '" style="table-layout: fixed; padding-left: 0px; padding-top: 10px; padding-right: 0px; padding-bottom: 10px;" border="0" cellspacing="0" cellpadding="0" align="' + align +'">\n')
     html.write('    <tbody>\n')
-    html.write('        <tr>\n')
-    html.write('            <td colspan="11"><img src=' + banner + ' width="100%" border="0"></td>\n')
-    html.write('        </tr>\n')
+    if banner != "":
+        html.write('        <tr>\n')
+        html.write('            <td colspan="11"><img src=' + banner + ' width="100%" border="0"></td>\n')
+        html.write('        </tr>\n')
     html.write('        <tr>\n')
     html.write('            <table width="' +str(size) + '" align="' + align + '">\n')
     for i in range(2):
         html.write('                    <tr>\n')
-
-        html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)][2] + '"><img src="' + keywordArray[(i*5)][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th></div>\n')
-
-        html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+1][2] + '"><img src="' + keywordArray[(i*5)+1][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')
-        
-        html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+2][2] + '"><img src="' + keywordArray[(i*5)+2][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')
-        
-        html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+3][2] + '"><img src="' + keywordArray[(i*5)+3][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')
-        
-        html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+4][2] + '"><img src="' + keywordArray[(i*5)+4][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')
-        
+        for each in range(5):
+            if keywordArray[each][0] != "":
+                html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+each][2] + '"><img src="' + keywordArray[(i*5)+each][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')
+            else:
+                html.write('                        <th padding="10px"></th>\n')
+            # html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+1][2] + '"><img src="' + keywordArray[(i*5)+1][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')       
+            # html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+2][2] + '"><img src="' + keywordArray[(i*5)+2][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')
+            # html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+3][2] + '"><img src="' + keywordArray[(i*5)+3][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')        
+            # html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+4][2] + '"><img src="' + keywordArray[(i*5)+4][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')   
         html.write('                    </tr>\n')
         html.write('                    <tr>\n')
-        
         html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)][1] + '</a></th>\n')
-        
         html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)+1][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+1][1] + '</a></th>\n')
-        
         html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)+2][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+2][1] + '</a></th>\n')
-        
         html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)+3][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+3][1] + '</a></th>\n')
-        
         html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)+4][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+4][1] + '</a></th>\n')
-        
         html.write('                    </tr>\n')
         html.write('                    <tr>\n')
         html.write('                        <td></br ></td>\n')

@@ -191,22 +191,18 @@ def createInsert(templateCategory, banner, size, align, filename):
     html.write('            <table width="' +str(size) + '" align="' + align + '">\n')
     for i in range(2):
         html.write('                    <tr>\n')
-        for each in range(5):
-            if keywordArray[each][0] != "":
-                html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+each][2] + '"><img src="' + keywordArray[(i*5)+each][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')
+        for icon in range(5):
+            if keywordArray[icon][0] != "":
+                html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+icon][2] + '"><img src="' + keywordArray[(i*5)+icon][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')
             else:
                 html.write('                        <th padding="10px"></th>\n')
-            # html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+1][2] + '"><img src="' + keywordArray[(i*5)+1][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')       
-            # html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+2][2] + '"><img src="' + keywordArray[(i*5)+2][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')
-            # html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+3][2] + '"><img src="' + keywordArray[(i*5)+3][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')        
-            # html.write('                        <th padding="10px"><a href="' + keywordArray[(i*5)+4][2] + '"><img src="' + keywordArray[(i*5)+4][0] + '" width="' + widthSize + '" height="' + heightSize + '"></a></th>\n')   
         html.write('                    </tr>\n')
         html.write('                    <tr>\n')
-        html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)][1] + '</a></th>\n')
-        html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)+1][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+1][1] + '</a></th>\n')
-        html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)+2][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+2][1] + '</a></th>\n')
-        html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)+3][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+3][1] + '</a></th>\n')
-        html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)+4][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+4][1] + '</a></th>\n')
+        for keyword in range(5):
+            if keywordArray[keyword][1] != "":
+                html.write('                        <th style="word-wrap: break-word"><a href="' + keywordArray[(i*5)+keyword][2] + '" style="font-family: Helvetica, sans-serif; font-size:' + fontSize + '; color: #333; text-decoration: none;">' + keywordArray[(i*5)+keyword][1] + '</a></th>\n')
+            else:
+                html.write('                        <th padding="10px"></th>\n')
         html.write('                    </tr>\n')
         html.write('                    <tr>\n')
         html.write('                        <td></br ></td>\n')

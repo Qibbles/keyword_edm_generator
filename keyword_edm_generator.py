@@ -3,13 +3,13 @@ from tkinter import ttk
 from tkinter import messagebox
 
 #images
-babyImg, babySize, babyAlign = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_baby.png", 750, "center"
-beautyImg, beautySize, beautyAlign = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_beauty.png", 750, "left"
-digitalImg, digitalSize, digitalAlign = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_digital.png", 750, "center"
-fashionImg, fashionSize, fashionAlign  = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_fashion.png", 750, "center"
-foodImg, foodSize, foodAlign  = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_food.png", 680, "left"
-livingImg, livingSize, livingAlign  = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_living.png", 750, "center"
-sportsImg, sportsSize, sportsAlign  = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_sports.png", 750, "center"
+babyImg, babySize, babyAlign = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_baby.png", 750, "Center"
+beautyImg, beautySize, beautyAlign = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_beauty.png", 750, "Left"
+digitalImg, digitalSize, digitalAlign = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_digital.png", 750, "Center"
+fashionImg, fashionSize, fashionAlign  = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_fashion.png", 750, "Center"
+foodImg, foodSize, foodAlign  = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_food.png", 680, "Left"
+livingImg, livingSize, livingAlign  = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_living.png", 750, "Center"
+sportsImg, sportsSize, sportsAlign  = "http://dp.image-gmkt.com/dp2016/SG/design/CM2/edm_trending_sports.png", 750, "Center"
 
 #functions
 class input:
@@ -28,15 +28,33 @@ class input:
         update()
         
     def generate():
-        template = update()
+        templateCategory = categoryVar.get()
+
+        if templateCategory == "Baby":
+            filename = "baby_keyword_insert.html"
+        elif templateCategory == "Beauty":
+            filename = "beauty_keyword_insert.html"
+        elif templateCategory == "Digital":
+            filename = "digital_keyword_insert.html"
+        elif templateCategory == "Fashion":
+            filename = "fashion_keyword_insert.html"
+        elif templateCategory == "Food":
+            filename = "food_keyword_insert.html"
+        elif templateCategory == "Living":
+            filename = "living_keyword_insert.html"
+        elif templateCategory == "Sports":
+            filename = "sports_keyword_insert.html"
+        elif templateCategory == "Others":
+            filename = "keyword_edm_insert.html"
+
         try:
-            fileExist = open(template[4], "r")
+            fileExist = open(template[1], "r")
             if messagebox.askokcancel("Error - Existing file for " + template[0] + " detected!", "Do you wish to overwrite existing file?"):
-                createInsert(template[0], template[1], template[2], template[3], template[4])
+                createInsert(templateCategory, filename)
             else:
                 pass
         except:
-            createInsert(template[0], template[1], template[2], template[3], template[4])
+            createInsert(templateCategory, filename)
         aspect()
 
 def update(*args):
@@ -46,72 +64,46 @@ def update(*args):
         bannerWidthBox.delete(0, 'end')
         bannerImgBox.insert(0, babyImg)
         bannerWidthBox.insert(0, babySize)
-        banner = babyImg
-        size = babySize
-        align = babyAlign
-        filename = "baby_keyword_insert.html"
+        alignVar.set(babyAlign)
     elif templateCategory == "Beauty":
         bannerImgBox.delete(0, 'end')
         bannerWidthBox.delete(0, 'end')
         bannerImgBox.insert(0, beautyImg)
         bannerWidthBox.insert(0, beautySize)
-        banner = beautyImg
-        size = beautySize
-        align = beautyAlign
-        filename = "beauty_keyword_insert.html"
+        alignVar.set(beautyAlign)
     elif templateCategory == "Digital":
         bannerImgBox.delete(0, 'end')
         bannerWidthBox.delete(0, 'end')
         bannerImgBox.insert(0, digitalImg)
         bannerWidthBox.insert(0, digitalSize)
-        banner = digitalImg
-        size = digitalSize
-        align = digitalAlign
-        filename = "digital_keyword_insert.html"
+        alignVar.set(digitalAlign)
     elif templateCategory == "Fashion":
         bannerImgBox.delete(0, 'end')
         bannerWidthBox.delete(0, 'end')
         bannerImgBox.insert(0, fashionImg)
         bannerWidthBox.insert(0, fashionSize)
-        banner = fashionImg
-        size = fashionSize
-        align = fashionAlign
-        filename = "fashion_keyword_insert.html"
+        alignVar.set(fashionAlign)
     elif templateCategory == "Food":
         bannerImgBox.delete(0, 'end')
         bannerWidthBox.delete(0, 'end')
         bannerImgBox.insert(0, foodImg)       
         bannerWidthBox.insert(0, foodSize)
-        banner = foodImg
-        size = foodSize
-        align = foodAlign
-        filename = "food_keyword_insert.html"
+        alignVar.set(foodAlign)
     elif templateCategory == "Living":
         bannerImgBox.delete(0, 'end')
         bannerWidthBox.delete(0, 'end')
         bannerImgBox.insert(0, livingImg)
         bannerWidthBox.insert(0, livingSize)
-        banner = livingImg
-        size = livingSize
-        align = livingAlign
-        filename = "living_keyword_insert.html"
+        alignVar.set(livingAlign)
     elif templateCategory == "Sports":
         bannerImgBox.delete(0, 'end')
         bannerWidthBox.delete(0, 'end')
         bannerImgBox.insert(0, sportsImg)
         bannerWidthBox.insert(0, sportsSize)
-        banner = sportsImg
-        size = sportsSize
-        align = sportsAlign
-        filename = "sports_keyword_insert.html"
+        alignVar.set(sportsAlign)
     elif templateCategory == "Others":
         bannerImgBox.delete(0, 'end')
         bannerWidthBox.delete(0, 'end')
-        banner = ""
-        size = ""
-        align = "center"
-        filename = "keyword_edm_insert.html"
-    return(templateCategory, banner, size, align, filename)
 
 def aspect():
         aspect = round(max(int(heightOption.get()), int(widthOption.get()))/min(int(heightOption.get()), int(widthOption.get())),5)
@@ -161,10 +153,11 @@ def delete():
 
     one.iconBox.focus()
 
-def createInsert(templateCategory, banner, size, align, filename):
+def createInsert(templateCategory, filename):
     keywordArray = []
-    bannerSize = bannerWidthOption.get()
     bannerImg = bannerImgOption.get()
+    bannerSize = bannerWidthOption.get()
+    bannerAlign = alignVar.get()
     fontSize = fontOption.get()
     widthSize = widthOption.get()
     heightSize = heightOption.get()  
@@ -181,14 +174,14 @@ def createInsert(templateCategory, banner, size, align, filename):
     keywordArray.append([ten.icon.get(), ten.keyword.get(), ten.link.get()])
 
     html = open(filename, "w")
-    html.write('<table width="' + str(size) + '" style="table-layout: fixed; padding-left: 0px; padding-top: 10px; padding-right: 0px; padding-bottom: 10px;" border="0" cellspacing="0" cellpadding="0" align="' + align +'">\n')
+    html.write('<table width="' + str(bannerSize) + '" style="table-layout: fixed; padding-left: 0px; padding-top: 10px; padding-right: 0px; padding-bottom: 10px;" border="0" cellspacing="0" cellpadding="0" align="' + bannerAlign +'">\n')
     html.write('    <tbody>\n')
-    if banner != "":
+    if bannerImg != "":
         html.write('        <tr>\n')
-        html.write('            <td colspan="11"><img src=' + banner + ' width="100%" border="0"></td>\n')
+        html.write('            <td colspan="11"><img src=' + bannerImg + ' width="100%" border="0"></td>\n')
         html.write('        </tr>\n')
     html.write('        <tr>\n')
-    html.write('            <table width="' +str(size) + '" align="' + align + '">\n')
+    html.write('            <table width="' +str(bannerSize) + '" align="' + bannerAlign + '">\n')
     for i in range(2):
         html.write('                    <tr>\n')
         for icon in range(5):
@@ -228,45 +221,57 @@ def height():
     heightBox.insert(0, height)
 
 #GUI
-win = tk.Tk()
-win.title("Keyword EDM Generator by Gregory")
-win.resizable(False, False)
-# win.iconbitmap(r'..\icon.ico')
+main = tk.Tk()
+main.title("Keyword EDM Generator")
+main.resizable(False, False)
 
+### Notebook ###
+nb = ttk.Notebook(main)
+nb.grid(row=2, column=0, pady=(5,0), padx=(1,0), sticky='NSEW')
+
+#Input tab
+win = ttk.Frame(nb)
+nb.add(win, text="Input")
+
+guide = ttk.Frame(nb)
+nb.add(guide, text="Help")
+
+### Help Tab ###
+helpMsg = "There is no help.\nGood luck!\n\nEDM Generator Version 3"
+helpLabel = tk.Message(guide, text=helpMsg, width=500)
+helpLabel.grid(row=0, column=0)
+
+### Input Tab ###
 #Header labels
-bannerLabel = ttk.Label(win, text="Banner Width").grid(row=1, column=1)
-
 bannerImgLabel = ttk.Label(win, text="Banner Image URL").grid(row=0, column=1)
 
-fontLabel = ttk.Label(win, text="Font Size")
-fontLabel.grid(column=1, row=2)
+bannerLabel = ttk.Label(win, text="Banner Width").grid(row=1, column=1)
 
-widthLabel = ttk.Label(win, text="Image Width (pixels)")
-widthLabel.grid(column=1, row=3)
+bannerAlignLabel = ttk.Label(win, text="EDM Alignment").grid(row=2, column=1)
+aspectLabel = ttk.Label(win, text="Aspect Ratio").grid(row=2, column=3)
 
-aspectLabel = ttk.Label(win, text="Aspect Ratio").grid(row=1, column=3)
+fontLabel = ttk.Label(win, text="Font Size").grid(row=3, column=1)
 
-heightLabel = ttk.Label(win, text="Image Height (pixels)")
-heightLabel.grid(column=1, row=4)
+widthLabel = ttk.Label(win, text="Image Width (pixels)").grid(row=4, column=1)
 
-templateLabel = ttk.Label(win, text="Template Category")
-templateLabel.grid(column=1, row=5)
+heightLabel = ttk.Label(win, text="Image Height (pixels)").grid(row=5, column=1)
 
-iconLabel = ttk.Label(win, text="Icon URL")
-iconLabel.grid(column=1, row=6)
+templateLabel = ttk.Label(win, text="Template Category").grid(row=6, column=1)
 
-KeywordLabel = ttk.Label(win, text="Keyword")
-KeywordLabel.grid(column=2, row=6)
-
-linkLabel = ttk.Label(win, text="Link URL")
-linkLabel.grid(column=3, row=6)
+iconLabel = ttk.Label(win, text="Icon URL").grid(row=7, column=1)
+KeywordLabel = ttk.Label(win, text="Keyword").grid(row=7, column=2)
+linkLabel = ttk.Label(win, text="Link URL").grid(row=7, column=3)
 
 #OptionMenu
 categoryVar = tk.StringVar()
 categoryVar.set("Baby") #default value
 category = tk.OptionMenu(win, categoryVar, "Baby", "Beauty", "Digital", "Fashion", "Food", "Living", "Sports", "Others")
-category.grid(column=2, row=5)
+category.grid(column=2, row=6)
 categoryVar.trace("w", update)
+
+alignVar = tk.StringVar()
+alignVar.set("center") #default value
+alignment = tk.OptionMenu(win, alignVar, "Left", "Center", "Right").grid(row=2, column=2)
 
 #Input
 bannerImgOption = tk.StringVar()
@@ -280,27 +285,27 @@ bannerWidthBox.grid(row=1, column=2, pady=(3,0))
 fontOption = tk.StringVar()
 fontBox = ttk.Entry(win, width=20, textvariable=fontOption)
 fontBox.insert(0, "30")
-fontBox.grid(column=2, row=2, pady=(3,0))
+fontBox.grid(row=3, column=2, pady=(3,0))
 
 widthOption = tk.StringVar()
 widthBox = ttk.Entry(win, width=20, textvariable=widthOption)
 widthBox.insert(0, "76")
-widthBox.grid(column=2, row=3, pady=(3,0))
+widthBox.grid(row=4, column=2, pady=(3,0))
 
 heightOption = tk.StringVar()
 heightBox = ttk.Entry(win, width=20, textvariable=heightOption)
 heightBox.insert(0, "100")
-heightBox.grid(column=2, row=4, pady=(3,0))
+heightBox.grid(row=5, column=2, pady=(3,0))
 
 aspectOption = tk.StringVar()
 aspectBox = ttk.Entry(win, width=8, textvariable=aspectOption)
-aspectBox.grid(column=3, row=2, pady=(3,0))
+aspectBox.grid(column=3, row=3, pady=(3,0))
 # aspectFrame = tk.Frame(win).grid(row=2, column=3, padx=20)
-aspectWidthButton = ttk.Button(win, text="Width", command=width).grid(row=3, column=3)
-aspectHeightButton = ttk.Button(win, text="Height", command=height).grid(row=4, column=3)
+aspectWidthButton = ttk.Button(win, text="Width", command=width).grid(row=4, column=3)
+aspectHeightButton = ttk.Button(win, text="Height", command=height).grid(row=5, column=3)
 
 for i in range(10):
-    r = 7 + i
+    r = 8 + i
 
     indexLabel = ttk.Label(win, text=str(i + 1) + ". ")
     indexLabel.grid(column=0, row=r)
@@ -326,9 +331,9 @@ for i in range(10):
     if i == 9:
         ten  = input("ten", r)
         clearButton = ttk.Button(win, text="Reset", command=delete)
-        clearButton.grid(column=1, row=i+8, pady=5)
+        clearButton.grid(column=1, row=i+9, pady=5)
         generateButton = ttk.Button(win, text="Generate HTML", command=input.generate)
-        generateButton.grid(column=3, row=i+8, pady=5)
+        generateButton.grid(column=3, row=i+9, pady=5)
 
 aspect()
 

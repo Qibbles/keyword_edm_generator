@@ -1,3 +1,4 @@
+1
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
@@ -19,27 +20,34 @@ class input:
         headerText = headerTextVar.get()
         if templateCategory == "Baby":
             filename = "baby_keyword_insert.html"
+            tracking = "2026422408"
         elif templateCategory == "Beauty":
             filename = "beauty_keyword_insert.html"
+            tracking = "2026422381"
         elif templateCategory == "Digital":
             filename = "digital_keyword_insert.html"
+            tracking = "2026422390"
         elif templateCategory == "Fashion":
             filename = "fashion_keyword_insert.html"
+            tracking = "2026422372"
         elif templateCategory == "Food":
             filename = "food_keyword_insert.html"
+            tracking = "2026422426"
         elif templateCategory == "Living":
             filename = "living_keyword_insert.html"
+            tracking = "2026422417"
         elif templateCategory == "Sports":
             filename = "sports_keyword_insert.html"
+            tracking = "2026422435"
         
         try:
             fileExist = open(filename, "r")
             if messagebox.askokcancel("Error - Existing file for " + templateCategory + " detected!", "Do you wish to overwrite existing file?"):
-                createInsert(templateCategory, filename, headerText)
+                createInsert(templateCategory, filename, tracking, headerText)
             else:
                 pass
         except:
-            createInsert(templateCategory, filename, headerText)
+            createInsert(templateCategory, filename, tracking, headerText)
 
     def clear(self):
         self.iconBox.delete(0, 'end')
@@ -67,7 +75,7 @@ def delete():
     seven.iconBox.delete(0, 'end')
     seven.linkBox.delete(0, 'end')
 
-def createInsert(templateCategory, filename, headerText):
+def createInsert(templateCategory, filename, tracking, headerText):
 
     keywordArray = []
 
@@ -88,14 +96,14 @@ def createInsert(templateCategory, filename, headerText):
     for i in range(2):
         html.write('    <tr>\n')
         if i == 0:
-            html.write('        <td rowspan="2"><a href="' + keywordArray[0][1] + '" target="_blank"><img src="' + keywordArray[0][0] + '" width="185" alt=""></a></td>\n')
-            html.write('        <td><a href="' + keywordArray[i+1][1] + '" target="_blank"><img src="' + keywordArray[i+1][0] + '" width="185" alt=""></a></td>\n')
-            html.write('        <td><a href="' + keywordArray[i+2][1] + '" target="_blank"><img src="' + keywordArray[i+2][0] + '" width="185" alt=""></a></td>\n')
-            html.write('        <td><a href="' + keywordArray[i+3][1] + '" target="_blank"><img src="' + keywordArray[i+3][0] + '" width="185" alt=""></a></td>\n')
+            html.write('        <td rowspan="2"><a href="' + keywordArray[0][1] + '?jaehuid=' + tracking + '" target="_blank"><img src="' + keywordArray[0][0] + '" width="185" alt=""></a></td>\n')
+            html.write('        <td><a href="' + keywordArray[i+1][1] + '?jaehuid=' + tracking + '" target="_blank"><img src="' + keywordArray[i+1][0] + '" width="185" alt=""></a></td>\n')
+            html.write('        <td><a href="' + keywordArray[i+2][1] + '?jaehuid=' + tracking + '" target="_blank"><img src="' + keywordArray[i+2][0] + '" width="185" alt=""></a></td>\n')
+            html.write('        <td><a href="' + keywordArray[i+3][1] + '?jaehuid=' + tracking + '" target="_blank"><img src="' + keywordArray[i+3][0] + '" width="185" alt=""></a></td>\n')
         else:
-            html.write('        <td><a href="' + keywordArray[i+3][1] + '" target="_blank"><img src="' + keywordArray[i+3][0] + '" width="185" alt=""></a></td>\n')
-            html.write('        <td><a href="' + keywordArray[i+4][1] + '" target="_blank"><img src="' + keywordArray[i+4][0] + '" width="185" alt=""></a></td>\n')
-            html.write('        <td><a href="' + keywordArray[i+5][1] + '" target="_blank"><img src="' + keywordArray[i+5][0] + '" width="185" alt=""></a></td>\n')
+            html.write('        <td><a href="' + keywordArray[i+3][1] + '?jaehuid=' + tracking + '" target="_blank"><img src="' + keywordArray[i+3][0] + '" width="185" alt=""></a></td>\n')
+            html.write('        <td><a href="' + keywordArray[i+4][1] + '?jaehuid=' + tracking + '" target="_blank"><img src="' + keywordArray[i+4][0] + '" width="185" alt=""></a></td>\n')
+            html.write('        <td><a href="' + keywordArray[i+5][1] + '?jaehuid=' + tracking + '" target="_blank"><img src="' + keywordArray[i+5][0] + '" width="185" alt=""></a></td>\n')
         html.write('    </tr>\n')
     html.write('</table>\n')
     html.close()

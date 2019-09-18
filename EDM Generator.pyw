@@ -161,7 +161,7 @@ for i in range(7):
     r = 4 + i
 
     if i ==0:
-           indexLabel = ttk.Label(win, text=str(i + 1) + ". (185 x 280px)")
+        indexLabel = ttk.Label(win, text=str(i + 1) + ". (185 x 280px)")
     else:
         indexLabel = ttk.Label(win, text=str(i + 1) + ". (185 x 140 px)")
     indexLabel.grid(column=0, row=r)

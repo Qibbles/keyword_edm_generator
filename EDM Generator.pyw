@@ -4,11 +4,14 @@ from tkinter import messagebox
 
 
 class input:
-
     def __init__(self, index, r):
         self.r = r
-        self.indexLabel = ttk.Label(
-            win, text=str(self.r - 4) + ". (185 x 280px)")
+        if r == 5:
+            self.indexLabel = ttk.Label(
+                win, text=str(self.r - 4) + ". (185 x 280px)")
+        else:
+            self.indexLabel = ttk.Label(
+                win, text=str(self.r - 4) + ". (185 x 140 px)")
         self.indexLabel.grid(column=0, row=self.r)
         self.icon = tk.StringVar()
         self.iconBox = ttk.Entry(win, width=20, textvariable=self.icon)
@@ -54,7 +57,6 @@ class input:
     def clear(self):
         self.iconBox.delete(0, 'end')
         self.linkBox.delete(0, 'end')
-
 
 def delete():
     one.iconBox.delete(0, 'end')
@@ -141,8 +143,8 @@ def update(*args):
         headerTextBox.insert(0, '9')
 
 
-def createInsert(templateCategory, filename, tracking, headerText):
-
+def createInsert(templateCategory, filename, tracking, headerText, noItems):
+    colspanNo = round(noItems/2)
     keywordArray = []
 
     keywordArray.append([one.icon.get(), one.link.get()])
@@ -157,7 +159,7 @@ def createInsert(templateCategory, filename, tracking, headerText):
     html.write(
         '<table width="740" border="0" align="center" cellpadding="0" cellspacing="0">\n')
     html.write('    <tr>\n')
-    html.write('        <td colspan="4" style="font-family: Gotham, Helvetica Neue, Helvetica, Arial, sans-serif; text-align: center; color: #000000; font-size: 26px; text-transform: uppercase; padding: 25px 0px 10px;">' + headerText + '</td>\n')
+    html.write('        <td colspan="' + colspanNo + '" style="font-family: Gotham, Helvetica Neue, Helvetica, Arial, sans-serif; text-align: center; color: #000000; font-size: 26px; text-transform: uppercase; padding: 25px 0px 10px;">' + headerText + '</td>\n')
     html.write('    </tr>\n')
 
     for i in range(2):
@@ -185,12 +187,11 @@ def createInsert(templateCategory, filename, tracking, headerText):
     messagebox.showinfo("Success!", "EDM insert for " +
                         templateCategory + " created!")
 
-
 # GUI
 win = tk.Tk()
 win.title("Keyword EDM Generator")
 win.resizable(False, False)
-# win.iconbitmap(r'..\icon.ico')
+# win.iconbitmap(r'..\icon.ico') 
 
 ### Notebook ###
 nb = ttk.Notebook(win)

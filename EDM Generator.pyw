@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
-#functions
+
 class input:
 
     def __init__(self, index, r):
@@ -38,7 +38,7 @@ class input:
         elif templateCategory == "Sports":
             filename = "sports_keyword_insert.html"
             tracking = "2026422435"
-        
+
         try:
             fileExist = open(filename, "r")
             if messagebox.askokcancel("Error - Existing file for " + templateCategory + " detected!", "Do you wish to overwrite existing file?"):
@@ -51,6 +51,7 @@ class input:
     def clear(self):
         self.iconBox.delete(0, 'end')
         self.linkBox.delete(0, 'end')
+
 
 def delete():
     one.iconBox.delete(0, 'end')
@@ -74,6 +75,55 @@ def delete():
     seven.iconBox.delete(0, 'end')
     seven.linkBox.delete(0, 'end')
 
+    eight.iconBox.delete(0, 'end')
+    eight.linkBox.delete(0, 'end')
+
+    nine.iconBox.delete(0, 'end')
+    nine.linkBox.delete(0, 'end')
+
+    one.iconBox.grid_forget()
+
+
+# def createRows(noItem):
+#     for i in range(noItem):
+#         r = 5 + i
+
+#         if i == 0:
+#             indexLabel = ttk.Label(win, text=str(i + 1) + ". (185 x 280px)")
+#         else:
+#             indexLabel = ttk.Label(win, text=str(i + 1) + ". (185 x 140 px)")
+#         indexLabel.grid(column=0, row=r)
+
+#         if i == 0:
+#             one = input("one", r)
+#         if i == 1:
+#             two = input("two", r)
+#         if i == 2:
+#             three = input("three", r)
+#         if i == 3:
+#             four = input("four", r)
+#         if i == 4:
+#             five = input("five", r)
+#         if i == 5:
+#             six = input("six", r)
+#         if i == 6:
+#             seven = input("seven", r)
+
+#             clearButton = ttk.Button(win, text="Reset", command=delete)
+#             clearButton.grid(column=1, row=i+6)
+#             generateButton = ttk.Button(
+#                 win, text="Generate HTML", command=input.generate)
+#             generateButton.grid(column=2, row=i+6)
+
+
+def update(*args):
+    items = noItemVar.get()
+    if items == "7":
+        headerTextBox.insert(0, '7')
+    elif items == "9":
+        headerTextBox.insert(0, '9')
+
+
 def createInsert(templateCategory, filename, tracking, headerText):
 
     keywordArray = []
@@ -87,29 +137,39 @@ def createInsert(templateCategory, filename, tracking, headerText):
     keywordArray.append([seven.icon.get(), seven.link.get()])
 
     html = open(filename, "w")
-    html.write('<table width="740" border="0" align="center" cellpadding="0" cellspacing="0">\n')
+    html.write(
+        '<table width="740" border="0" align="center" cellpadding="0" cellspacing="0">\n')
     html.write('    <tr>\n')
     html.write('        <td colspan="4" style="font-family: Gotham, Helvetica Neue, Helvetica, Arial, sans-serif; text-align: center; color: #000000; font-size: 26px; text-transform: uppercase; padding: 25px 0px 10px;">' + headerText + '</td>\n')
     html.write('    </tr>\n')
-    
+
     for i in range(2):
         html.write('    <tr>\n')
         if i == 0:
-            html.write('        <td rowspan="2"><a href="' + keywordArray[0][1] + '?jaehuid=' + tracking + '" target="_blank"><img src="' + keywordArray[0][0] + '" width="185" alt=""></a></td>\n')
-            html.write('        <td><a href="' + keywordArray[i+1][1] + '?jaehuid=' + tracking + '" target="_blank"><img src="' + keywordArray[i+1][0] + '" width="185" alt=""></a></td>\n')
-            html.write('        <td><a href="' + keywordArray[i+2][1] + '?jaehuid=' + tracking + '" target="_blank"><img src="' + keywordArray[i+2][0] + '" width="185" alt=""></a></td>\n')
-            html.write('        <td><a href="' + keywordArray[i+3][1] + '?jaehuid=' + tracking + '" target="_blank"><img src="' + keywordArray[i+3][0] + '" width="185" alt=""></a></td>\n')
+            html.write('        <td rowspan="2"><a href="' + keywordArray[0][1] + '?jaehuid=' + tracking +
+                       '" target="_blank"><img src="' + keywordArray[0][0] + '" width="185" alt=""></a></td>\n')
+            html.write('        <td><a href="' + keywordArray[i+1][1] + '?jaehuid=' + tracking +
+                       '" target="_blank"><img src="' + keywordArray[i+1][0] + '" width="185" alt=""></a></td>\n')
+            html.write('        <td><a href="' + keywordArray[i+2][1] + '?jaehuid=' + tracking +
+                       '" target="_blank"><img src="' + keywordArray[i+2][0] + '" width="185" alt=""></a></td>\n')
+            html.write('        <td><a href="' + keywordArray[i+3][1] + '?jaehuid=' + tracking +
+                       '" target="_blank"><img src="' + keywordArray[i+3][0] + '" width="185" alt=""></a></td>\n')
         else:
-            html.write('        <td><a href="' + keywordArray[i+3][1] + '?jaehuid=' + tracking + '" target="_blank"><img src="' + keywordArray[i+3][0] + '" width="185" alt=""></a></td>\n')
-            html.write('        <td><a href="' + keywordArray[i+4][1] + '?jaehuid=' + tracking + '" target="_blank"><img src="' + keywordArray[i+4][0] + '" width="185" alt=""></a></td>\n')
-            html.write('        <td><a href="' + keywordArray[i+5][1] + '?jaehuid=' + tracking + '" target="_blank"><img src="' + keywordArray[i+5][0] + '" width="185" alt=""></a></td>\n')
+            html.write('        <td><a href="' + keywordArray[i+3][1] + '?jaehuid=' + tracking +
+                       '" target="_blank"><img src="' + keywordArray[i+3][0] + '" width="185" alt=""></a></td>\n')
+            html.write('        <td><a href="' + keywordArray[i+4][1] + '?jaehuid=' + tracking +
+                       '" target="_blank"><img src="' + keywordArray[i+4][0] + '" width="185" alt=""></a></td>\n')
+            html.write('        <td><a href="' + keywordArray[i+5][1] + '?jaehuid=' + tracking +
+                       '" target="_blank"><img src="' + keywordArray[i+5][0] + '" width="185" alt=""></a></td>\n')
         html.write('    </tr>\n')
     html.write('</table>\n')
     html.close()
 
-    messagebox.showinfo("Success!", "EDM insert for " + templateCategory + " created!")
+    messagebox.showinfo("Success!", "EDM insert for " +
+                        templateCategory + " created!")
 
-#GUI
+
+# GUI
 win = tk.Tk()
 win.title("Keyword EDM Generator")
 win.resizable(False, False)
@@ -117,7 +177,7 @@ win.resizable(False, False)
 
 ### Notebook ###
 nb = ttk.Notebook(win)
-nb.grid(row=2, column=0, pady=(5,0), padx=(1,0), sticky='NSEW')
+nb.grid(row=2, column=0, pady=(5, 0), padx=(1, 0), sticky='NSEW')
 
 ## Input tab ##
 win = ttk.Frame(nb)
@@ -131,59 +191,41 @@ helpMsg = "No help yet....\n\n Keyword EDM Insert Generator by Gregory"
 helpLabel = tk.Message(guide, text=helpMsg, width=500)
 helpLabel.grid(row=0, column=0)
 
-#Header labels
+# Header labels
 templateLabel = ttk.Label(win, text="Template Category")
 templateLabel.grid(column=1, row=0)
 
+noItemLabel = ttk.Label(win, text="No. Items")
+noItemLabel.grid(column=1, row=1)
+
 headerTextLabel = ttk.Label(win, text="Header Text")
-headerTextLabel.grid(column=1, row=1)
+headerTextLabel.grid(column=1, row=2)
 
 iconLabel = ttk.Label(win, text="Icon URL")
-iconLabel.grid(column=1, row=3)
+iconLabel.grid(column=1, row=4)
 
 linkLabel = ttk.Label(win, text="Link URL")
-linkLabel.grid(column=2, row=3)
+linkLabel.grid(column=2, row=4)
 
-#OptionMenu
+# OptionMenu
 categoryVar = tk.StringVar()
-categoryVar.set("Baby") #default value
-
-category = tk.OptionMenu(win, categoryVar, "Baby", "Beauty", "Digital", "Fashion", "Food", "Living", "Sports")
+categoryVar.set("Baby")  # default value
+category = tk.OptionMenu(win, categoryVar, "Baby", "Beauty",
+                         "Digital", "Fashion", "Food", "Living", "Sports")
 category.grid(column=2, row=0)
 
-#Input
+noItemVar = tk.StringVar()
+noItemVar.set(7)  # default value
+noItem = tk.OptionMenu(win, noItemVar, 7, 9)
+noItem.grid(column=2, row=1)
+noItemVar.trace("w", update)
+
+# Input
 headerTextVar = tk.StringVar()
 headerTextBox = ttk.Entry(win, width=20, textvariable=headerTextVar)
 headerTextBox.insert('end', 'HOT TRENDS')
-headerTextBox.grid(row=1, column=2, pady=(3,0))
+headerTextBox.grid(column=2, row=2, pady=(3, 0))
 
-for i in range(7):
-    r = 4 + i
-
-    if i ==0:
-        indexLabel = ttk.Label(win, text=str(i + 1) + ". (185 x 280px)")
-    else:
-        indexLabel = ttk.Label(win, text=str(i + 1) + ". (185 x 140 px)")
-    indexLabel.grid(column=0, row=r)
-
-    if i == 0:
-        one = input("one", r)
-    if i == 1:
-        two = input("two", r)
-    if i == 2:
-        three = input("three", r)
-    if i == 3:
-        four = input("four", r)
-    if i == 4:
-        five = input("five", r)
-    if i == 5:
-        six = input("six", r)
-    if i == 6:
-        seven = input("seven", r)
-
-        clearButton = ttk.Button(win, text="Reset", command=delete)
-        clearButton.grid(column=1, row=i+5)
-        generateButton = ttk.Button(win, text="Generate HTML", command=input.generate)
-        generateButton.grid(column=2, row=i+5)
+# createRows(int(noItemVar.get()))
 
 win.mainloop()

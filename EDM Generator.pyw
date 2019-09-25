@@ -7,6 +7,9 @@ class input:
 
     def __init__(self, index, r):
         self.r = r
+        self.indexLabel = ttk.Label(
+            win, text=str(self.r - 4) + ". (185 x 280px)")
+        self.indexLabel.grid(column=0, row=self.r)
         self.icon = tk.StringVar()
         self.iconBox = ttk.Entry(win, width=20, textvariable=self.icon)
         self.iconBox.grid(column=1, row=self.r)
@@ -75,51 +78,65 @@ def delete():
     seven.iconBox.delete(0, 'end')
     seven.linkBox.delete(0, 'end')
 
-    eight.iconBox.delete(0, 'end')
-    eight.linkBox.delete(0, 'end')
+    # eight.iconBox.delete(0, 'end')
+    # eight.linkBox.delete(0, 'end')
 
-    nine.iconBox.delete(0, 'end')
-    nine.linkBox.delete(0, 'end')
+    # nine.iconBox.delete(0, 'end')
+    # nine.linkBox.delete(0, 'end')
 
-    one.iconBox.grid_forget()
+    one.iconBox.destroy()
+    one.indexLabel.destroy()
 
 
-# def createRows(noItem):
-#     for i in range(noItem):
-#         r = 5 + i
+def createRows(noItem):
+    global one
+    global two
+    global three
+    global four
+    global five
+    global six
+    global seven
 
-#         if i == 0:
-#             indexLabel = ttk.Label(win, text=str(i + 1) + ". (185 x 280px)")
-#         else:
-#             indexLabel = ttk.Label(win, text=str(i + 1) + ". (185 x 140 px)")
-#         indexLabel.grid(column=0, row=r)
+    for i in range(noItem):
+        r = i + 5
 
-#         if i == 0:
-#             one = input("one", r)
-#         if i == 1:
-#             two = input("two", r)
-#         if i == 2:
-#             three = input("three", r)
-#         if i == 3:
-#             four = input("four", r)
-#         if i == 4:
-#             five = input("five", r)
-#         if i == 5:
-#             six = input("six", r)
-#         if i == 6:
-#             seven = input("seven", r)
+        # if i == 0:
+        #     indexLabel = ttk.Label(win, text=str(i + 1) + ". (185 x 280px)")
+        # else:
+        #     indexLabel = ttk.Label(win, text=str(i + 1) + ". (185 x 140 px)")
+        # indexLabel.grid(column=0, row=r)
 
-#             clearButton = ttk.Button(win, text="Reset", command=delete)
-#             clearButton.grid(column=1, row=i+6)
-#             generateButton = ttk.Button(
-#                 win, text="Generate HTML", command=input.generate)
-#             generateButton.grid(column=2, row=i+6)
+        if i == 0:
+            one = input("one", r)
+        if i == 1:
+            two = input("two", r)
+        if i == 2:
+            three = input("three", r)
+        if i == 3:
+            four = input("four", r)
+        if i == 4:
+            five = input("five", r)
+        if i == 5:
+            six = input("six", r)
+        if i == 6:
+            seven = input("seven", r)
+        if i == 7:
+            eight = input("eight", r)
+        if i == 8:
+            nine = input("nine", r)
+
+    clearButton = ttk.Button(win, text="Reset", command=delete)
+    clearButton.grid(column=1, row=i+6)
+    generateButton = ttk.Button(
+        win, text="Generate HTML", command=input.generate)
+    generateButton.grid(column=2, row=i+6)
 
 
 def update(*args):
     items = noItemVar.get()
     if items == "7":
         headerTextBox.insert(0, '7')
+
     elif items == "9":
         headerTextBox.insert(0, '9')
 
@@ -226,6 +243,6 @@ headerTextBox = ttk.Entry(win, width=20, textvariable=headerTextVar)
 headerTextBox.insert('end', 'HOT TRENDS')
 headerTextBox.grid(column=2, row=2, pady=(3, 0))
 
-# createRows(int(noItemVar.get()))
+createRows(int(noItemVar.get()))
 
 win.mainloop()

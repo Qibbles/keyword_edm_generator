@@ -137,6 +137,10 @@ def createRows(noItem):
 def update(*args):
     items = noItemVar.get()
     if items == "7":
+        eight.iconBox.destroy()
+        eight.linkBox.destroy()
+        nine.iconBox.destroy()
+        nine.linkBox.destroy()
         headerTextBox.insert(0, '7')
 
     elif items == "9":
